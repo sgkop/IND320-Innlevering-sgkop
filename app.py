@@ -1,9 +1,13 @@
 import streamlit as st
 
+# Configure the page layout and title
+
 st.set_page_config(
     page_title="Reservoir Dashboard",
     layout="wide"
 )
+
+# Main page content
 
 st.title("Reservoir Dashboard")
 
@@ -14,5 +18,3 @@ st.write(
     Use the navigation menu on the left to navigate between pages.
     """
 )
-
-st.sidebar.success("Choose a page.")

@@ -3,6 +3,7 @@ import pandas as pd
 
 st.title("Data Table")
 
+# Read dataset using Streamlit caching
 
 @st.cache_data
 def load_data():
@@ -25,7 +26,8 @@ df = df.rename(columns={
     "endring_fyllingsgrad": "filling_ratio_change"
 })
 
-# Lag én rad per kolonne
+# Create one row for each dataset column
+
 column_data = []
 
 for col in df.columns:
@@ -40,6 +42,8 @@ for col in df.columns:
     })
 
 table_df = pd.DataFrame(column_data)
+
+# Display mini line charts for the first values of each series
 
 st.dataframe(
     table_df,

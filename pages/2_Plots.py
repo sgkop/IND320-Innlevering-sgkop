@@ -4,11 +4,14 @@ import matplotlib.pyplot as plt
 
 st.title("Reservoir Plots")
 
+# Read dataset using Streamlit caching
 
 @st.cache_data
 def load_data():
 
     df = pd.read_csv("data/reservoirs.csv")
+
+# Rename Norwegian column names to English
 
     df = df.rename(columns={
         "dato_Id": "date",
@@ -24,6 +27,8 @@ def load_data():
         "endring_fyllingsgrad": "filling_ratio_change"
     })
 
+# Convert date column to datetime format
+
     df["date"] = pd.to_datetime(df["date"])
 
     return df
@@ -31,7 +36,8 @@ def load_data():
 
 df = load_data()
 
-# Variabler som skal vises
+# Variables available for plotting
+
 plot_columns = [
     "filling_ratio",
     "capacity_TWh",
@@ -40,23 +46,26 @@ plot_columns = [
     "filling_ratio_change"
 ]
 
-# Sorter data
+# Sort data by date
+
 df = df.sort_values(by="date")
 
-# Bruk alle områder og lag én verdi per dato
+# Aggregate values across all reservoir areas by date
+
 df_plot = (
     df.groupby("date")[plot_columns]
       .mean()
       .reset_index()
 )
 
-# Velg variabel
+# Allow user to select a variable
+
 selected_column = st.selectbox(
     "Choose variable",
     ["All"] + plot_columns
 )
 
-# Velg måned
+# Allow user to select a month range
 months = sorted(
     df_plot["date"].dt.to_period("M").astype(str).unique()
 )
@@ -75,12 +84,13 @@ filtered_df = df_plot[
     (df_plot["date"].dt.to_period("M").astype(str) <= end_month)
 ]
 
-# Figur
+# # Create plot figure
+
 fig, ax = plt.subplots(figsize=(12, 6))
 
 if selected_column == "All":
 
-    # Normaliser variablene til 0-1
+    # Normalize variables to a common 0-1 scale
     normalized_df = filtered_df.copy()
 
     for col in plot_columns:
