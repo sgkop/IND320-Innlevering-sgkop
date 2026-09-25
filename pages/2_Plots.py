@@ -84,7 +84,7 @@ filtered_df = df_plot[
     (df_plot["date"].dt.to_period("M").astype(str) <= end_month)
 ]
 
-# # Create plot figure
+# Create plot figure
 
 fig, ax = plt.subplots(figsize=(12, 6))
 
