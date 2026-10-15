@@ -1,0 +1,187 @@
+[33mcommit 52e7ff8de6b9a6560f4b8a72a972ecd72ca74a69[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Oct 15 11:01:56 2026 +0200
+
+    Migrate to Python 3.11 and complete Cassandra/MongoDB integration
+
+[33mcommit 3dbeb03e535db0c22a8db3d235e4cc04f8cc3000[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Oct 15 10:49:46 2026 +0200
+
+    Complete ENTSO-E pipeline with Cassandra and MongoDB using Python 3.11
+
+[33mcommit 46e84249c869d7e603b15081f77eef2f48b5d492[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Oct 8 11:22:15 2026 +0200
+
+    Ignore virtual environment files
+
+[33mcommit 8f49eb86d17a0505cf80913b0fa1badb066f4ed0[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 12:20:05 2026 +0200
+
+    Add project overview and setup instructions to README
+    
+    This README provides an overview of the project, including its description, structure, and instructions for running the Streamlit application and Jupyter Notebook.
+
+[33mcommit 38da7cd9a1c1897fb196029b51a3111598b52b63[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 12:16:35 2026 +0200
+
+    fjernet test
+
+[33mcommit 1511fd3091bba6bc5d5f341921cfe74f3fa75a37[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 12:15:08 2026 +0200
+
+    screencast 30 mb
+
+[33mcommit 448cfad6ed104600c28d953a44f27d7681325c57[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 11:07:34 2026 +0200
+
+    renvask
+
+[33mcommit 80d572ee7462f7b1ad81681e10b9434ed38a8497[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 10:40:37 2026 +0200
+
+    mappestruktur
+
+[33mcommit 7e317a2781b2497cd657a563f0f95e05397b82bd[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 10:14:41 2026 +0200
+
+    testvideo
+
+[33mcommit d619b0d1f6a0af0877111bbeba0b3c1eb2ef0527[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 25 09:27:19 2026 +0200
+
+    oppdatert pdf
+
+[33mcommit 2eb446677a06fba72465711ab94114e900305781[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 24 11:03:25 2026 +0200
+
+    oppdtaert logg
+
+[33mcommit d512632966d46918b17723d262b3d931a91111a1[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 24 09:43:27 2026 +0200
+
+    lagt inn sti til app
+
+[33mcommit 9c9ebfdc699fc7e6d34e964f2429bde4dd1884bf[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 24 09:41:21 2026 +0200
+
+    endret navn, lagt inn sti til app
+
+[33mcommit 1430434bc86279b49e02f1f2c828ced94ff865f1[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 24 09:31:03 2026 +0200
+
+    adding comments
+
+[33mcommit 8ac1b1e88082357f8f4df0f66bcd7636089d3e1d[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 24 08:50:44 2026 +0200
+
+    refine notebook
+
+[33mcommit 3235ef7f4061c6e4c95e860cb0b706232345db84[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Tue Sep 22 13:26:47 2026 +0200
+
+    lagt inn notat
+
+[33mcommit 69ab0e32b4d27551a1545be1c7461c8c1898a465[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Mon Sep 21 19:25:57 2026 +0200
+
+    kladd log, ferdig app
+
+[33mcommit b2f668bc0ed0ab70ffd352b6315039d8c4636bf2[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Mon Sep 21 14:07:59 2026 +0200
+
+    laget appfil
+
+[33mcommit 9c96f852b376efaeb409a4f658c444ba534e2a70[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Mon Sep 21 14:02:06 2026 +0200
+
+    endret mappenavn
+
+[33mcommit ad8add49a43f350d9cf2e5bdf2d28921b06585a7[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Mon Sep 21 14:00:19 2026 +0200
+
+    Plot all columns together. Consider how to make this natural, given that the scales are different.
+
+[33mcommit f9bada187d4f4123fc1d215a0ed6b5c5acc30fa4[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Mon Sep 21 08:57:09 2026 +0200
+
+    gitignore, matplotlib, plot column
+
+[33mcommit 198759b0db6a5d394569e0a2c8a5ecd760996fc8[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 18 09:29:59 2026 +0200
+
+    endret navn
+
+[33mcommit 1e2e90c90616ce498f5d6b0307b2e98d6db82a90[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 18 09:21:56 2026 +0200
+
+    lese fil
+
+[33mcommit fe13c0cc0789380f20abbc9477dee73e88f09cd9[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 18 07:25:47 2026 +0200
+
+    markdown
+
+[33mcommit 232900e0fd2b4564c138a7aa9d1b56cd3d7e94e4[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Fri Sep 18 07:24:13 2026 +0200
+
+    laget mappestruktur for innlevering
+
+[33mcommit 7625bf71763a60eb1df4abaf7b5b92e5116de07e[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 12:13:46 2026 +0200
+
+    laget test app
+
+[33mcommit fd3564783fc71bb78e6cbce3b8e5a7a1f92ac2d2[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 12:10:22 2026 +0200
+
+    lastet stremlit
+
+[33mcommit df7214e613a49821e84ad2bf156f3d2422e58fa5[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 12:02:14 2026 +0200
+
+    venv
+
+[33mcommit d0d9842913d6dc59299c45d0889279db4bdded0f[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 11:53:30 2026 +0200
+
+    til github
+
+[33mcommit a590d5a42fcf460403e2aa1f6b3dc9bf2fd20185[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 11:51:09 2026 +0200
+
+    laget fil
+
+[33mcommit fc13dff3081b6da9036878c7ef41f10ff2589821[m
+Author: sgkop <sander.green.kopstad@nmbu.no>
+Date:   Thu Sep 17 10:53:12 2026 +0200
+
+    Initial commit
