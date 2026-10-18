@@ -1,20 +1,21 @@
 import streamlit as st
 
-# Configure the page layout and title
-
 st.set_page_config(
-    page_title="Reservoir Dashboard",
+    page_title="Energy Data Dashboard",
     layout="wide"
 )
 
-# Main page content
-
-st.title("Reservoir Dashboard")
+st.title("Energy Data Dashboard")
 
 st.write(
     """
-    Welcome to the reservoir dashboard.
+    Welcome to the Energy Data Dashboard.
 
-    Use the navigation menu on the left to navigate between pages.
+    The application contains visualisations based on
+    reservoir statistics from NVE and cross-border
+    electricity flow data from ENTSO-E.
+
+    Use the navigation menu on the left to explore
+    the available pages.
     """
 )

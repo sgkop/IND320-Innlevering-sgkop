@@ -1,5 +1,6 @@
-# Python virtual environment
+# Python virtual environments
 .venv/
+.venv311/
 
 # Python cache
 __pycache__/
@@ -13,4 +14,6 @@ __pycache__/
 
 # Environment variables
 .env
-``
+
+# Streamlit secrets
+.streamlit/secrets.toml
