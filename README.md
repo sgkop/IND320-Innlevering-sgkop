@@ -1,32 +1,43 @@
-# IND320 - Compulsory Assignment 1
+# IND320 Project
 
 ## Description
 
-This project analyses Norwegian reservoir data using a Jupyter Notebook and presents the results through a Streamlit application.
+This repository contains the project work completed for IND320.
+
+The project combines data collection, processing, analysis and visualization using:
+
+- NVE Magasinstatistikk API
+- Open-Meteo ERA5 weather data
+- ENTSO-E cross-border flow data
+- Jupyter Notebook
+- Streamlit
 
 The project includes:
 
-- Data exploration using Pandas
-- Data visualization using Matplotlib
-- Interactive dashboard using Streamlit
-- Project documentation and reflection
+- Reservoir data exploration
+- Cross-border electricity flow analysis
+- Statistical Process Control (SPC)
+- Local Outlier Factor (LOF)
+- STL decomposition
+- Spectrogram analysis
+- Interactive Streamlit dashboard
 
 ---
 
 ## Repository Structure
 
 ```text
-data/
-    reservoirs.csv
-
 notebooks/
     Dashboard basics.ipynb
-    Dashboard basics.pdf
+    Data quality.ipynb
+    Data sources.ipynb
 
 pages/
     1_Data_Table.py
     2_Plots.py
-    3_Page4.py
+    3_Crossborder_Flows.py
+    4_Reservoir_Analysis.py
+    5_Weather_Analysis.py
 
 app.py
 requirements.txt
@@ -67,18 +78,19 @@ streamlit run app.py
 
 ## Jupyter Notebook
 
-The notebook used for development and documentation is located at:
+The notebooks used for development and documentation are located in:
 
 ```text
-notebooks/Dashboard basics.ipynb
+notebooks/
 ```
-
-A PDF version of the notebook is also included.
+These notebooks contain the exploratory analysis, API integration and analytical methods used in the Streamlit application.
 
 ---
 
 ## AI Usage
 
-M365 Copilot (GPT‑5) was used to discuss project structure, assist with debugging, explain visualization choices, support Streamlit development, and review written documentation.
+I acknowledge the use of M365 Copilot (https://www.microsoft.com/copilot), based on the GPT-5 chat model, during this project.
 
-All code, visualizations and written content were reviewed, tested and adapted before submission.
+M365 Copilot was used to discuss project structure, evaluate implementation alternatives, support debugging, explain analytical methods, assist with Streamlit development, and review written documentation.
+
+All code, visualisations, analysis choices and written content were reviewed, tested and adapted.
