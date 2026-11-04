@@ -66,6 +66,7 @@ def load_weather():
         })
     )
 
+# Load Open-Meteo weather data used for SPC and LOF analysis
 
 daily_weather = load_weather()
 
@@ -124,6 +125,7 @@ with tab1:
         .values
     )
 
+    # Remove low-frequency seasonal variation before SPC analysis
     coeffs = dct(
         signal,
         norm="ortho"
@@ -142,6 +144,7 @@ with tab1:
         satv
     )
 
+    # Estimate robust SPC limits using Median Absolute Deviation
     mad = np.median(
         np.abs(
             satv - median
@@ -162,6 +165,7 @@ with tab1:
         - n_std * robust_std
     )
 
+    # Identify precipitation outliers
     outliers = (
         (satv > upper_limit)
         |
@@ -250,6 +254,7 @@ with tab2:
         .reshape(-1, 1)
     )
 
+    # Detect temperature anomalies using Local Outlier Factor
     lof = LocalOutlierFactor(
         contamination=contamination
     )
@@ -258,6 +263,7 @@ with tab2:
         values
     )
 
+    # Flag observations classified as anomalies
     anomalies = (
         labels == -1
     )
