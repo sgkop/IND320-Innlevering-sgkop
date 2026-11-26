@@ -5,6 +5,7 @@
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
@@ -17,3 +18,21 @@ __pycache__/
 
 # Streamlit secrets
 .streamlit/secrets.toml
+
+# Streamlit cache
+.streamlit/cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PDF / LaTeX export files
+*.aux
+*.log
+*.out
+*.toc
+*.tex
+
+# Temporary files
+tmp/
+temp/
