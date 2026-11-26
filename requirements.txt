@@ -3,10 +3,16 @@ pandas
 numpy
 plotly
 requests
-scikit-learn
+
 scipy
+statsmodels
+scikit-learn
+
 pymongo
+
 folium
 streamlit-folium
 streamlit-plotly-events
+
 geopandas
+shapely
