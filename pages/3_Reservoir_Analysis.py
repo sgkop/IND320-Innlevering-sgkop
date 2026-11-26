@@ -2,14 +2,29 @@ import streamlit as st
 import pandas as pd
 import requests
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 from statsmodels.tsa.seasonal import STL
 from scipy.signal import spectrogram
+from utils.theme import PLOTLY_TEMPLATE
 
+# --------------------------------------------------------
+# DATA LOADING
+# --------------------------------------------------------
 
 @st.cache_data
 def load_reservoir_data():
+    """
+    Download public reservoir statistics from
+    Magasinstatistikk API.
+
+    The dataset contains weekly observations for:
+    - EL (price areas)
+    - VASS (watercourse regions)
+    - NO (Norway total)
+
+    The data are reused throughout the Streamlit app.
+    """
 
     url = (
         "https://biapi.nve.no/magasinstatistikk/api/"
@@ -23,12 +38,19 @@ def load_reservoir_data():
     )
 
 
+# --------------------------------------------------------
+# STL DECOMPOSITION
+# --------------------------------------------------------
+
 def stl_analysis(
     series,
     seasonal=53,
     trend=105,
     robust=True
 ):
+    """
+    Perform STL decomposition.
+    """
 
     stl = STL(
         series,
@@ -40,11 +62,19 @@ def stl_analysis(
     return stl.fit()
 
 
+# --------------------------------------------------------
+# SPECTROGRAM ANALYSIS
+# --------------------------------------------------------
+
 def spectrogram_analysis(
     series,
     window_length=128,
     overlap=64
 ):
+    """
+    Compute a spectrogram representation of the
+    reservoir filling time series.
+    """
 
     centered = (
         series.values
@@ -66,21 +96,36 @@ def spectrogram_analysis(
 
 st.title("Reservoir Analysis")
 
+st.info(
+    """
+    This page presents STL decomposition and
+    spectrogram analysis of reservoir filling data
+    from NVE Magasinstatistikk.
+
+    The selected area is shared with the rest of the
+    application through Streamlit session state.
+    """
+)
+
+# --------------------------------------------------------
+# LOAD DATA
+# --------------------------------------------------------
+
 df = load_reservoir_data()
 
-area_type = st.selectbox(
-    "Area Type",
-    sorted(df["omrType"].unique())
+area_type = st.session_state.area_type
+area_number = st.session_state.area_number
+
+st.caption(
+    f"""
+    Selected area:
+    {area_type} / {area_number}
+    """
 )
 
-area_number = st.selectbox(
-    "Area Number",
-    sorted(
-        df[
-            df["omrType"] == area_type
-        ]["omrnr"].unique()
-    )
-)
+# --------------------------------------------------------
+# FILTER DATA
+# --------------------------------------------------------
 
 filtered = df[
     (df["omrType"] == area_type)
@@ -102,6 +147,10 @@ series = (
     ["fyllingsgrad"]
 )
 
+# --------------------------------------------------------
+# PAGE TABS
+# --------------------------------------------------------
+
 tab1, tab2 = st.tabs(
     [
         "STL Analysis",
@@ -109,9 +158,9 @@ tab1, tab2 = st.tabs(
     ]
 )
 
-# --------------------------------------------------------
-# STL
-# --------------------------------------------------------
+# ========================================================
+# STL ANALYSIS
+# ========================================================
 
 with tab1:
 
@@ -122,7 +171,6 @@ with tab1:
     with st.expander(
         "About STL Analysis"
     ):
-
         st.write(
             """
             STL (Seasonal-Trend decomposition using LOESS)
@@ -144,7 +192,7 @@ with tab1:
     robust = True
 
     with st.expander(
-        "Advanced settings"
+        "Advanced Settings"
     ):
 
         seasonal = st.number_input(
@@ -166,6 +214,7 @@ with tab1:
             value=True
         )
 
+    # Perform STL decomposition
     result = stl_analysis(
         series,
         seasonal=seasonal,
@@ -173,9 +222,55 @@ with tab1:
         robust=robust
     )
 
-    fig = result.plot()
+    fig = go.Figure()
 
-    st.pyplot(fig)
+    fig.add_trace(
+        go.Scatter(
+            x=series.index,
+            y=series.values,
+            name="Original",
+            mode="lines"
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=series.index,
+            y=result.trend,
+            name="Trend",
+            mode="lines"
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=series.index,
+            y=result.seasonal,
+            name="Seasonal",
+            mode="lines"
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=series.index,
+            y=result.resid,
+            name="Residual",
+            mode="lines"
+        )
+    )
+
+    fig.update_layout(
+        title="STL Decomposition",
+        xaxis_title="Date",
+        yaxis_title="Filling Degree (%)",
+        template=PLOTLY_TEMPLATE
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
     st.caption(
         f"Seasonal={seasonal} | "
@@ -183,9 +278,9 @@ with tab1:
         f"Robust={robust}"
     )
 
-# --------------------------------------------------------
+# ========================================================
 # SPECTROGRAM
-# --------------------------------------------------------
+# ========================================================
 
 with tab2:
 
@@ -196,15 +291,13 @@ with tab2:
     with st.expander(
         "About Spectrogram"
     ):
-
         st.write(
             """
             A spectrogram visualises how frequency
             components evolve over time.
 
-            Stronger colours indicate stronger
-            periodic behaviour in the reservoir
-            filling series.
+            Stronger colours indicate stronger periodic
+            behaviour in the reservoir filling series.
             """
         )
 
@@ -212,7 +305,7 @@ with tab2:
     overlap = 64
 
     with st.expander(
-        "Advanced settings"
+        "Advanced Settings"
     ):
 
         window_length = st.number_input(
@@ -248,32 +341,36 @@ with tab2:
             )
         )
 
-        fig, ax = plt.subplots(
-            figsize=(10, 5)
-        )
-
-        ax.pcolormesh(
-            times,
-            frequencies,
+        spectrum_db = (
             10 * np.log10(
                 spectrum + 1e-12
-            ),
-            shading="gouraud"
+            )
         )
 
-        ax.set_title(
-            "Spectrogram of Reservoir Filling"
+        fig = go.Figure(
+            data=
+            go.Heatmap(
+                z=spectrum_db,
+                x=times,
+                y=frequencies,
+                colorscale="Viridis",
+                colorbar=dict(
+                    title="dB"
+                )
+            )
         )
 
-        ax.set_xlabel(
-            "Time Window"
+        fig.update_layout(
+            title="Spectrogram of Reservoir Filling",
+            xaxis_title="Time Window",
+            yaxis_title="Frequency",
+            template=PLOTLY_TEMPLATE
         )
 
-        ax.set_ylabel(
-            "Frequency"
+        st.plotly_chart(
+            fig,
+            use_container_width=True
         )
-
-        st.pyplot(fig)
 
         st.caption(
             f"Window length={window_length} | "
